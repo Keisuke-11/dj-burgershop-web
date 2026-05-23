@@ -1,0 +1,254 @@
+/* About.css - Modernized Story Page for DJs Burger Bar */
+
+/* =========================================== */
+/* === GLOBAL & LAYOUT STYLES === */
+/* =========================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-image: url('../Photo/realbg.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    padding-top: 80px; /* Standardized for fixed header */
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* =========================================== */
+/* === HERO SECTION === */
+/* =========================================== */
+
+.about-hero {
+    position: relative;
+    text-align: center;
+    color: white;
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('../Photo/realbg.png');
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh; /* Fill the entire viewport height */
+    flex-shrink: 0;    /* Prevent flexbox from squeezing the section */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 60px;
+}
+
+.about-hero h1 {
+    font-size: 4.5rem;
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+    letter-spacing: -1px;
+}
+
+.about-hero p {
+    font-size: 1.25rem;
+    max-width: 700px;
+    margin: 0 auto;
+    opacity: 0.9;
+    line-height: 1.6;
+}
+
+/* =========================================== */
+/* === STORY CARD SECTION === */
+/* =========================================== */
+
+.about-main-container {
+    margin-bottom: 100px;
+}
+
+.about-card {
+    background: white;
+    border-radius: 30px;
+    padding: 60px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+
+.about-content h2 {
+    font-size: 2.5rem;
+    color: #BC1823;
+    margin-bottom: 30px;
+    font-weight: 800;
+    text-align: center;
+}
+
+.about-content p {
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: #444;
+    margin-bottom: 40px;
+    text-align: justify;
+}
+
+.about-content strong {
+    color: #BC1823;
+    font-weight: 700;
+}
+
+/* =========================================== */
+/* === MAP SECTION === */
+/* =========================================== */
+
+.map-wrapper {
+    width: 100%;
+    height: 450px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    margin-bottom: 30px;
+    border: 1px solid #eee;
+}
+
+.map-wrapper iframe {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.map-controls {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.map-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 15px 30px;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    border: 2px solid #BC1823;
+}
+
+.map-btn {
+    background: #BC1823;
+    color: white;
+}
+
+.map-btn:hover {
+    background: #e5535b;
+    border-color: #e5535b;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(188, 24, 35, 0.2);
+}
+
+.map-btn.secondary {
+    background: transparent;
+    color: #BC1823;
+}
+
+.map-btn.secondary:hover {
+    background: #fcebeb;
+    transform: translateY(-3px);
+}
+
+/* =========================================== */
+/* === FOOTER STYLING === */
+/* =========================================== */
+
+.footer {
+    background: #BC1823;
+    color: white;
+    padding: 80px 0 40px;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 40px;
+}
+
+.footer-col h4 {
+    font-size: 1.25rem;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.footer-col p {
+    opacity: 0.8;
+    margin-bottom: 10px;
+}
+
+.social-icons {
+    display: flex;
+    gap: 15px;
+}
+
+.social-icons a {
+    width: 45px;
+    height: 45px;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    transition: transform 0.3s ease;
+}
+
+.social-icons a:hover {
+    transform: translateY(-5px);
+    background: yellow;
+}
+
+.social-icons svg {
+    width: 22px;
+    height: 22px;
+    fill: #BC1823;
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 60px;
+    padding-top: 40px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    font-size: 0.9rem;
+    opacity: 0.7;
+}
+
+/* =========================================== */
+/* === RESPONSIVE DESIGN === */
+/* =========================================== */
+
+@media (max-width: 768px) {
+    .about-hero h1 {
+        font-size: 3rem;
+    }
+    
+    .about-card {
+        padding: 30px;
+    }
+    
+    .about-content h2 {
+        font-size: 2rem;
+    }
+    
+    .map-wrapper {
+        height: 300px;
+    }
+    
+    .map-btn {
+        width: 100%;
+        justify-content: center;
+    }
+}

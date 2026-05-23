@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About</title>
+    <link rel="stylesheet" href="CSS/About.css">
+    <link rel="stylesheet" href="CSS/Navigation.css">
+    <link rel="stylesheet" href="CSS/Footer.css">
+
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <img src="Photo/RealLogo.png" alt="Tabeya logo">
+        </div>
+        <nav class="nav-links">
+            <a href="index.html" class="nav-link">HOME</a>
+            <a href="Menu.html" class="nav-link">MENU</a>
+            <a href="CaterReservation.html" class="nav-link">RESERVATION</a>
+            <a href="Review.php" class="nav-link">REVIEWS</a>
+            <a href="About.html" class="nav-link active">ABOUT</a>
+        </nav>
+        <div class="header-right">
+            <a href="Login.html" id="account-link">PROFILE</a>
+            <div class="cart-icon" id="view-cart-btn">
+                <a href="Cart.html" style="text-decoration: none; color: inherit;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="9" cy="21" r="1"></circle>
+                        <circle cx="20" cy="21" r="1"></circle>
+                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                    </svg>
+                    <span class="cart-count" id="cart-item-count">0</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <section class="about-hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Our Story</h1>
+                <p>Authentic Filipino flavors, crafted with passion and served with love. Discover the heart behind DJs Burger Bar.</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="container about-main-container">
+        <div class="about-card">
+            <div class="about-content">
+                <h2>A Taste of Home in Every Bite</h2>
+                <p>
+                    <strong>DJs Burger Bar</strong> is a local food store located in Mercedes, Camarines Norte, dedicated
+                    to serving best burgers and Filipino dishes that bring the comforting taste of home to every customer.
+                    Inspired by a love for American and Filipino cuisine and a passion for sharing it with the community, our journey
+                    began with the simple goal of providing fresh, delicious meals at an affordable price. At DJs Burger Bar,
+                    we take pride in our signature dishes, crafted with care and rooted in tradition. From
+                    well-loved classics to unique local favorites, our menu reflects the rich culinary heritage of the
+                    Philippines. Each dish is prepared with quality ingredients and a commitment to delivering flavors
+                    that feel familiar and satisfying.
+                </p>
+
+                <!-- Map Section Inside Text Box, Below Paragraph -->
+                <div style="margin-top: 30px;">
+                    
+                    <div class="map-wrapper">
+                        <iframe
+                            src="https://www.google.com/maps?q=14.1112738,123.0040929&z=15&output=embed"
+                            width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+
+                    <!-- Interactive Direction Buttons -->
+                    <div class="map-controls">
+                        <button id="get-directions-btn" class="map-btn" onclick="getDirectionsFromMyLocation()">
+                            <span>🧭</span>
+                            <span>Get Directions from My Location</span>
+                        </button>
+
+                        <a href="https://www.google.com/maps?cid=1610814678613946182" target="_blank"
+                            class="map-btn secondary">
+                            <span>🗺️</span>
+                            <span>View in Google Maps</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart Modal Removed -->
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container footer-grid">
+
+            <div class="footer-col">
+                <h4>Follow Us</h4>
+                <div class="social-icons">
+                    <a href="#" aria-label="Facebook">
+                        <svg xmlns="https://www.facebook.com/djburgerbar" viewBox="0 0 24 24">
+                            <path
+                                d="M12 2.04C6.5 2.04 2 6.53 2 12.06C2 17.06 5.66 21.21 10.44 21.96V14.96H7.9V12.06H10.44V9.85C10.44 7.34 11.93 5.96 14.22 5.96C15.31 5.96 16.45 6.15 16.45 6.15V8.62H15.19C13.95 8.62 13.56 9.39 13.56 10.18V12.06H16.34L15.89 14.96H13.56V21.96A10.05 10.05 0 0 0 22 12.06C22 6.53 17.5 2.04 12 2.04Z" />
+                        </svg>
+                    </a>
+                    <a href="#" aria-label="Instagram">
+                        <svg xmlns="https://www.instagram.com/joshua.abrantes/" viewBox="0 0 24 24">
+                            <path
+                                d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 3.6 7.6v8.8C3.6 18.4 5.6 20 7.6 20h8.8a3.6 3.6 0 0 0 4-3.6V7.6C20.4 5.6 18.8 4 16.8 4H7.6m4.4 3.6a4.4 4.4 0 1 1 0 8.8 4.4 4.4 0 0 1 0-8.8m0 1.6a2.8 2.8 0 1 0 0 5.6 2.8 2.8 0 0 0 0-5.6m5.8-5.6a1.4 1.4 0 1 1 0 2.8 1.4 1.4 0 0 1 0-2.8" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h4>Visit Us</h4>
+                <p>Barangay 1<br>Mercedes, Camarines Norte</p>
+            </div>
+
+            <div class="footer-col">
+                <h4>Contact Us</h4>
+                <p>0977 213 7648</p>
+                <p>joshuafernan_abrantes@yahoo.com</p>
+            </div>
+
+            <div class="footer-col">
+                <h4>All rights reserved</h4>
+                <p>© 2026 DJs Burger Bar</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ====================================================================
+        // === GOOGLE MAPS DIRECTIONS FUNCTIONALITY ===
+        // ====================================================================
+
+        const TABEYA_DESTINATION = 'DJs Burger Bar, Barangay 1, Mercedes, Camarines Norte';
+
+        /**
+         * Get directions from user's current location to Tabeya Restaurant
+         * Uses GPS location detection and opens Google Maps with directions
+         */
+        function getDirectionsFromMyLocation() {
+            const btn = document.getElementById('get-directions-btn');
+
+            // Disable button and show loading state
+            btn.disabled = true;
+            btn.innerHTML = '<span>🔄</span><span>Opening Maps...</span>';
+
+            // Use Google Maps Directions API
+            // Omitting 'origin' defaults to "Current Location" in Google Maps, 
+            // which often has better fallback/correction mechanisms than browser Geolocation API.
+            // It also allows the user to easily type a different starting point if the detection is wrong.
+            const mapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(TABEYA_DESTINATION)}`;
+
+            setTimeout(() => {
+                window.open(mapsUrl, '_blank');
+
+                // Reset button
+                btn.disabled = false;
+                btn.innerHTML = '<span>🧭</span><span>Get Directions from My Location</span>';
+            }, 800);
+        }
+
+        // ====================================================================
+        // === CORE LOGIN/SECURITY FUNCTIONS ===
+        // ====================================================================
+        const LOGIN_PAGE = 'Login.html';
+        const CATER_RESERVATION_PAGE = 'CaterReservation.html';
+        const CURRENT_PAGE = 'About.html';
+
+        /**
+         * Checks if the user is logged in.
+         * @returns {object|null} The user object if logged in, null otherwise.
+         */
+        function getCurrentUser() {
+            try {
+                return JSON.parse(localStorage.getItem('currentUser'));
+            } catch (e) {
+                console.error("Error parsing user data from localStorage:", e);
+                return null;
+            }
+        }
+
+        /**
+         * Updates the PROFILE and CATER RESERVATION links based on login status.
+         */
+        function updateHeaderLinks() {
+            const accountLink = document.getElementById('account-link');
+            const caterLink = document.getElementById('cater-reservation-link');
+            const user = getCurrentUser();
+
+            // 1. Update PROFILE Link (Login/Logout State)
+            if (accountLink) {
+                accountLink.onclick = null;
+                if (user) {
+                    const firstName = user.name ? user.name.split(' ')[0] : user.firstName || 'PROFILE';
+                    accountLink.textContent = firstName.toUpperCase();
+                    accountLink.href = 'Profile.html';
+                } else {
+                    accountLink.textContent = 'PROFILE';
+                    accountLink.href = LOGIN_PAGE;
+                    accountLink.addEventListener('click', () => {
+                        localStorage.setItem('redirectAfterLogin', 'Profile.html');
+                    });
+                }
+            }
+
+            // 2. Secure CATER RESERVATION Link
+            if (caterLink) {
+                caterLink.onclick = null;
+                if (!user) {
+                    caterLink.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        alert("You must log in to access the Cater Reservation page.");
+                        localStorage.setItem('redirectAfterLogin', CATER_RESERVATION_PAGE);
+                        window.location.href = LOGIN_PAGE;
+                    });
+                } else {
+                    caterLink.href = CATER_RESERVATION_PAGE;
+                }
+            }
+        }
+
+        // Cart display logic simplified
+        const cartCountElement = document.getElementById('cart-item-count');
+        let cart = JSON.parse(localStorage.getItem('tabeyaCart')) || [];
+
+        function updateCartCount() {
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            if (cartCountElement) cartCountElement.textContent = totalItems;
+        }
+
+        // Add to Cart logic (kept for potential future use or if hidden buttons exist)
+        function addToCart(itemDetails) {
+            const existingItem = cart.find(item => item.id === itemDetails.id);
+
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({ ...itemDetails, quantity: 1 });
+            }
+
+            localStorage.setItem('tabeyaCart', JSON.stringify(cart));
+            updateCartCount();
+        }
+
+        function addToCart(itemDetails) {
+            const existingItem = cart.find(item => item.id === itemDetails.id);
+
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({ ...itemDetails, quantity: 1 });
+            }
+            renderCart();
+            console.log(`${itemDetails.name} added to cart! Total items: ${cartCountElement.textContent}`);
+        }
+
+        // ====================================================================
+        // === INITIALIZATION ===
+        // ====================================================================
+        document.addEventListener('DOMContentLoaded', () => {
+            updateCartCount();
+            updateHeaderLinks();
+        });
+    </script>
+</body>
+
+</html>

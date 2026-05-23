@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - DJs Burger Bar</title>
+    <link rel="stylesheet" href="CSS/Menu.css">
+    <link rel="stylesheet" href="CSS/Navigation.css">
+    <link rel="stylesheet" href="CSS/Footer.css">
+    <style>
+        /* Enhanced Single Container Checkout Styles */
+        .checkout-container {
+            padding: 120px 20px 50px;
+            max-width: 900px;
+            margin: 0 auto;
+            min-height: 80vh;
+        }
+
+        .checkout-section {
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* FIX: Footer stays at the bottom and no overlapping */
+        body,
+        html {
+            height: 100%;
+            margin: 0;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .checkout-container {
+            flex: 1 0 auto;
+            /* This makes the checkout section push footer down */
+            padding-bottom: 40px;
+            /* Safe spacing above footer */
+        }
+
+        footer {
+            flex-shrink: 0;
+            margin-top: 40px;
+            /* Space above footer */
+            position: relative;
+            /* Removes overlap behavior */
+            z-index: 1;
+        }
+
+
+        .checkout-section h2 {
+            color: #BC1823;
+            border-bottom: 3px solid #BC1823;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+            font-size: 2em;
+            text-align: center;
+        }
+
+        /* Order Summary Styles */
+        .order-summary-box {
+            background-color: #f8f9fa;
+            border: 2px solid #BC1823;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+
+        .order-summary-box h3 {
+            color: #BC1823;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        #cart-items-display {
+            max-height: 300px;
+            overflow-y: auto;
+            margin-bottom: 15px;
+        }
+
+        .checkout-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px dashed #ddd;
+            font-size: 0.95em;
+        }
+
+        .checkout-item:last-child {
+            border-bottom: none;
+        }
+
+        .item-details-co {
+            flex-grow: 1;
+        }
+
+        .item-name-co {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 3px;
+        }
+
+        .item-qty-price-co {
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .item-subtotal-co {
+            font-weight: bold;
+            color: #008000;
+            font-size: 1.1em;
+        }
+
+        .checkout-item-img {
+            width: 60px;
+            height: 60px;
+            margin-right: 15px;
+            border-radius: 6px;
+            overflow: hidden;
+            border: 1px solid #eee;
+            flex-shrink: 0;
+        }
+
+        .checkout-item-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .summary-total {
+            text-align: right;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 3px solid #BC1823;
+            font-size: 1.8em;
+            color: #BC1823;
+            font-weight: bold;
+        }
+
+        /* Form Section */
+        .form-section {
+            margin-top: 30px;
+        }
+
+        .form-section h3 {
+            color: #BC1823;
+            margin-bottom: 20px;
+            font-size: 1.3em;
+            border-bottom: 2px solid #BC1823;
+            padding-bottom: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #333;
+            font-size: 1.05em;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-size: 1em;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: #BC1823;
+            outline: none;
+        }
+
+        /* Delivery Options Styling */
+        .delivery-options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 10px;
+        }
+
+        .delivery-option {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            background-color: white;
+        }
+
+        .delivery-option:hover {
+            background-color: #f8f9fa;
+            border-color: #BC1823;
+        }
+
+        .delivery-option input[type="radio"] {
+            width: 20px;
+            height: 20px;
+            margin-right: 12px;
+            cursor: pointer;
+        }
+
+        .delivery-option label {
+            cursor: pointer;
+            margin: 0;
+            font-weight: 500;
+            font-size: 1.05em;
+            flex-grow: 1;
+        }
+
+        .delivery-address-box {
+            display: none;
+            margin-top: 15px;
+            padding: 20px;
+            background-color: #fff3cd;
+            border-radius: 8px;
+            border: 2px solid #ffc107;
+        }
+
+        .delivery-address-box.show {
+            display: block;
+        }
+
+        .delivery-address-box input {
+            margin-bottom: 10px;
+            border: 2px solid #ffc107;
+        }
+
+        .delivery-address-box p {
+            color: #008000;
+            font-size: 0.95em;
+            margin: 0;
+            font-weight: 500;
+        }
+
+        /* GCash Payment Section */
+        .payment-box {
+            background-color: #fff3cd;
+            border: 3px solid #ffc107;
+            border-radius: 8px;
+            padding: 25px;
+            margin-top: 30px;
+        }
+
+        .payment-box h3 {
+            color: #BC1823;
+            margin-bottom: 15px;
+            font-size: 1.4em;
+            text-align: center;
+        }
+
+        .payment-icon {
+            text-align: center;
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+
+        .payment-box p {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .payment-amount {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .payment-amount p {
+            font-size: 1.1em;
+            margin-bottom: 5px;
+            color: #666;
+        }
+
+        .amount {
+            font-size: 2.5em;
+            color: #BC1823;
+            font-weight: bold;
+        }
+
+        /* File Upload Styling */
+        .file-input-wrapper {
+            position: relative;
+            margin: 20px 0;
+        }
+
+        .file-input-wrapper input[type="file"] {
+            display: none;
+        }
+
+        .file-input-label {
+            display: block;
+            padding: 25px;
+            background-color: white;
+            border: 3px dashed #BC1823;
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .file-input-label:hover {
+            background-color: #f8f9fa;
+            border-color: #a0141d;
+        }
+
+        .file-input-label.has-file {
+            border-color: #008000;
+            background-color: #d4edda;
+            border-style: solid;
+        }
+
+        .file-input-label span {
+            font-size: 1.1em;
+            color: #333;
+        }
+
+        .file-name-display {
+            display: none;
+            color: #008000;
+            margin-top: 15px;
+            font-weight: bold;
+            text-align: center;
+            font-size: 1.05em;
+        }
+
+        .file-name-display.show {
+            display: block;
+        }
+
+        .full-width-btn {
+            width: 100%;
+            padding: 18px;
+            background-color: #008000;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.3em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 30px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .full-width-btn:hover:not(:disabled) {
+            background-color: #006400;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .full-width-btn:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+            opacity: 0.6;
+            transform: none;
+        }
+
+        /* Success Popup */
+        .success-popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* ADDED: Wider container so summary + payment are not too stretched */
+        .checkout-container {
+            max-width: 1100px;
+            /* Increased from 900px */
+            width: 100%;
+        }
+
+        /* ADDED: Make inner checkout section wider and centered better */
+        .checkout-section {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        /* ADDED: Make order summary and payment boxes wider */
+        .order-summary-box,
+        .payment-box {
+            max-width: 100%;
+        }
+
+        /* ADDED: Allow checkout page to scroll independently */
+        body {
+            overflow-y: auto;
+        }
+
+        /* ADDED: Prevent overlapping with footer on smaller screens */
+        .checkout-container {
+            padding-bottom: 120px !important;
+        }
+
+        /* ADDED: Responsive behavior so content shrinks but does NOT overlap */
+        @media (max-width: 1024px) {
+            .checkout-container {
+                max-width: 95%;
+            }
+
+            .checkout-section {
+                padding: 30px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .checkout-section {
+                max-width: 100%;
+                padding: 20px;
+            }
+
+            .order-summary-box,
+            .payment-box {
+                padding: 15px;
+            }
+        }
+
+        .success-popup-content {
+            background-color: white;
+            padding: 50px 40px;
+            border-radius: 15px;
+            text-align: center;
+            max-width: 500px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .success-popup-icon {
+            font-size: 6em;
+            margin-bottom: 20px;
+        }
+
+        .success-popup-content h2 {
+            color: #008000;
+            margin-bottom: 20px;
+            font-size: 2em;
+        }
+
+        .success-popup-content p {
+            color: #666;
+            margin-bottom: 15px;
+            line-height: 1.8;
+            font-size: 1.1em;
+        }
+
+        .success-popup-content button {
+            background-color: #BC1823;
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.2em;
+            cursor: pointer;
+            margin-top: 25px;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .success-popup-content button:hover {
+            background-color: #a0141d;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .checkout-container {
+                padding-top: 80px;
+                padding-left: 15px;
+                padding-right: 15px;
+            }
+
+            .checkout-section {
+                padding: 25px 20px;
+            }
+
+            .checkout-section h2 {
+                font-size: 1.6em;
+            }
+
+            .summary-total {
+                font-size: 1.5em;
+            }
+
+            .amount {
+                font-size: 2em;
+            }
+
+            .success-popup-content {
+                padding: 40px 25px;
+                margin: 20px;
+            }
+
+            .success-popup-icon {
+                font-size: 4em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .checkout-item {
+                flex-wrap: wrap;
+            }
+
+            .item-subtotal-co {
+                width: 100%;
+                text-align: right;
+                margin-top: 5px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">
+            <img src="Photo/RealLogo.png" alt="Tabeya logo">
+        </div>
+        <nav class="nav-links">
+            <a href="index.html" class="nav-link">HOME</a>
+            <a href="Menu.html" class="nav-link">MENU</a>
+            <a href="CaterReservation.html" class="nav-link">RESERVATION</a>
+            <a href="Review.php" class="nav-link">REVIEWS</a>
+            <a href="About.html" class="nav-link">ABOUT</a>
+        </nav>
+        <div class="header-right">
+            <a href="Login.html" id="account-link">PROFILE</a>
+            <div class="cart-icon" id="view-cart-btn">
+                <a href="Cart.html" style="text-decoration: none; color: inherit;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="9" cy="21" r="1"></circle>
+                        <circle cx="20" cy="21" r="1"></circle>
+                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                    </svg>
+                    <span class="cart-count" id="cart-item-count">0</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <div class="checkout-container">
+        <div class="checkout-section">
+            <h2>Checkout</h2>
+
+            <!-- Order Summary Box -->
+            <div class="order-summary-box">
+                <h3>📦 Order Summary</h3>
+                <div id="cart-items-display"></div>
+                <div class="summary-total">
+                    Total: ₱<span id="order-grand-total">0.00</span>
+                </div>
+            </div>
+
+            <!-- Order Details Form -->
+            <form id="checkout-form">
+                <div class="form-section">
+                    <h3>📝 Customer Information</h3>
+
+                    <div class="form-group">
+                        <label for="name">Full Name:</label>
+                        <input type="text" id="name" name="name" required readonly>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="contact">Contact Number:</label>
+                        <input type="text" id="contact" name="contact" required pattern="09[0-9]{9}"
+                            placeholder="09XXXXXXXXX">
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h3>🚚 Delivery Options</h3>
+
+                    <div class="delivery-options">
+                        <div class="delivery-option">
+                            <input type="radio" id="order-pickup" name="order_type" value="PICKUP" checked>
+                            <label for="order-pickup">🏪 Pickup at Restaurant</label>
+                        </div>
+                        <div class="delivery-option">
+                            <input type="radio" id="order-delivery" name="order_type" value="DELIVERY">
+                            <label for="order-delivery">🚚 Delivery to Address</label>
+                        </div>
+                    </div>
+
+                    <div class="delivery-address-box" id="delivery-address-group">
+                        <input type="text" id="address" name="address" placeholder="Enter your full delivery address..."
+                            maxlength="500">
+                        <p>✓ Free Delivery available within Poblacion, Vinzons</p>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <div class="form-group">
+                        <label for="special-requests">📝 Special Requests (Optional):</label>
+                        <textarea id="special-requests" name="special_requests" rows="3"
+                            placeholder="E.g., No spicy, extra serving, specific arrangements..."></textarea>
+                    </div>
+                </div>
+
+                <!-- GCash Payment Section -->
+                <div class="payment-box">
+                    <div class="payment-icon">💳</div>
+                    <h3>GCash Payment</h3>
+                    <p>Please transfer the amount to our registered GCash number<br>and upload a screenshot of your
+                        receipt.</p>
+
+                    <div class="payment-amount">
+                        <p>Total Amount to Pay:</p>
+                        <div class="amount">₱<span id="payment-total-amount">0.00</span></div>
+                    </div>
+
+                    <div class="file-input-wrapper">
+                        <input type="file" id="gcash-receipt" name="gcash_receipt" accept="image/*">
+                        <label for="gcash-receipt" class="file-input-label">
+                            <span>📷 Upload GCash Receipt (Optional)</span>
+                        </label>
+                    </div>
+                    <div class="file-name-display" id="file-name-display"></div>
+                </div>
+
+                <button type="submit" class="full-width-btn" id="place-order-btn">Confirm Payment & Place Order</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="success-popup" id="success-popup">
+        <div class="success-popup-content">
+            <div class="success-popup-icon">🎉</div>
+            <h2>Order Placed!</h2>
+            <p>Thank you for your order at <strong>DJs Burger Bar!</strong></p>
+            <p>Your order is now <strong>Pending</strong> — our staff will review it shortly.</p>
+            <p>Once accepted, you'll see it as <strong>Confirmed</strong> in <em>View My Orders</em>.</p>
+            <button onclick="redirectToOrders()">📋 View My Orders</button>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container footer-grid">
+
+            <div class="footer-col">
+                <h4>Follow Us</h4>
+                <div class="social-icons">
+                    <a href="#" aria-label="Facebook">
+                        <svg xmlns="https://www.facebook.com/djburgerbar" viewBox="0 0 24 24">
+                            <path
+                                d="M12 2.04C6.5 2.04 2 6.53 2 12.06C2 17.06 5.66 21.21 10.44 21.96V14.96H7.9V12.06H10.44V9.85C10.44 7.34 11.93 5.96 14.22 5.96C15.31 5.96 16.45 6.15 16.45 6.15V8.62H15.19C13.95 8.62 13.56 9.39 13.56 10.18V12.06H16.34L15.89 14.96H13.56V21.96A10.05 10.05 0 0 0 22 12.06C22 6.53 17.5 2.04 12 2.04Z" />
+                        </svg>
+                    </a>
+                    <a href="#" aria-label="Instagram">
+                        <svg xmlns="https://www.instagram.com/joshua.abrantes/" viewBox="0 0 24 24">
+                            <path
+                                d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 3.6 7.6v8.8C3.6 18.4 5.6 20 7.6 20h8.8a3.6 3.6 0 0 0 4-3.6V7.6C20.4 5.6 18.8 4 16.8 4H7.6m4.4 3.6a4.4 4.4 0 1 1 0 8.8 4.4 4.4 0 0 1 0-8.8m0 1.6a2.8 2.8 0 1 0 0 5.6 2.8 2.8 0 0 0 0-5.6m5.8-5.6a1.4 1.4 0 1 1 0 2.8 1.4 1.4 0 0 1 0-2.8" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h4>Visit Us</h4>
+                <p>Barangay 1<br>Mercedes, Camarines Norte</p>
+            </div>
+
+            <div class="footer-col">
+                <h4>Contact Us</h4>
+                <p>0977 213 7648</p>
+                <p>joshuafernan_abrantes@yahoo.com</p>
+            </div>
+
+            <div class="footer-col">
+                <h4>All rights reserved</h4>
+                <p>© 2026 DJs Burger Bar</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const CART_KEY = 'tabeyaCart';
+        const USER_KEY = 'currentUser';
+        const LOGIN_PAGE = 'Login.html';
+        const CATER_RESERVATION_PAGE = 'CaterReservation.html';
+
+        // Fix image paths cached in localStorage before the API path fix
+        function fixImgPath(p) {
+            if (!p) return 'Photo/Foods.jpg';
+            if (p.startsWith('docs/')) p = p.substring(5);
+            return p;
+        }
+
+        let cart = JSON.parse(localStorage.getItem(CART_KEY)) || [];
+        let allCartItems = [...cart]; // Keep copy of full cart
+        // Filter to use only selected items for checkout
+        cart = cart.filter(item => item.selected);
+
+        let currentUser = JSON.parse(localStorage.getItem(USER_KEY));
+        let uploadedFile = null;
+
+        // Redirect if cart is empty or user is not logged in
+        if (cart.length === 0) {
+            alert("Your cart is empty. Redirecting to Menu.");
+            window.location.href = 'Menu.html';
+        }
+        if (!currentUser) {
+            alert("You must log in to proceed to checkout.");
+            localStorage.setItem('redirectAfterLogin', 'Checkout.html');
+            window.location.href = LOGIN_PAGE;
+        }
+
+        function calculateTotal() {
+            return cart.reduce((total, item) => total + (item.price * item.quantity), 0);
+        }
+
+        function renderOrderSummary() {
+            const display = document.getElementById('cart-items-display');
+            let itemsHtml = '';
+            let grandTotal = 0;
+
+            cart.forEach(item => {
+                const subtotal = item.price * item.quantity;
+                grandTotal += subtotal;
+
+                itemsHtml += `
+                    <div class="checkout-item">
+                        <div class="checkout-item-img">
+                            <img src="${fixImgPath(item.image)}" alt="${item.name}" onerror="this.onerror=null;this.src='Photo/Foods.jpg'">
+                        </div>
+                        <div class="item-details-co">
+                            <div class="item-name-co">${item.name}</div>
+                            <div class="item-qty-price-co">${item.quantity} x ₱${item.price.toFixed(2)}</div>
+                        </div>
+                        <span class="item-subtotal-co">₱${subtotal.toFixed(2)}</span>
+                    </div>
+                `;
+            });
+
+            display.innerHTML = itemsHtml;
+            document.getElementById('order-grand-total').textContent = grandTotal.toFixed(2);
+            document.getElementById('payment-total-amount').textContent = grandTotal.toFixed(2);
+        }
+
+        function populateUserDetails() {
+            if (currentUser) {
+                document.getElementById('name').value = currentUser.name || '';
+                document.getElementById('contact').value = currentUser.contactNumber || currentUser.contact || '';
+            }
+        }
+
+        function setupOrderTypeListener() {
+            const orderTypeRadios = document.querySelectorAll('input[name="order_type"]');
+            const addressGroup = document.getElementById('delivery-address-group');
+            const addressInput = document.getElementById('address');
+
+            orderTypeRadios.forEach(radio => {
+                radio.addEventListener('change', (e) => {
+                    if (e.target.value === 'DELIVERY') {
+                        addressGroup.classList.add('show');
+                        addressInput.setAttribute('required', 'required');
+                    } else {
+                        addressGroup.classList.remove('show');
+                        addressInput.removeAttribute('required');
+                    }
+                });
+            });
+        }
+
+        function handleFileUpload(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const validTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
+            if (!validTypes.includes(file.type)) {
+                alert('Please upload a valid image file (JPG, PNG, GIF, or WebP).');
+                event.target.value = '';
+                return;
+            }
+
+            const maxSize = 5 * 1024 * 1024;
+            if (file.size > maxSize) {
+                alert('File size must be less than 5MB.');
+                event.target.value = '';
+                return;
+            }
+
+            uploadedFile = file;
+            document.getElementById('file-name-display').textContent = `✓ File selected: ${file.name}`;
+            document.getElementById('file-name-display').classList.add('show');
+            document.querySelector('.file-input-label').classList.add('has-file');
+        }
+
+        function updateCartLink() {
+            const count = cart.reduce((sum, item) => sum + item.quantity, 0);
+            document.getElementById('cart-item-count').textContent = count;
+
+            const accountLink = document.getElementById('account-link');
+            if (currentUser) {
+                accountLink.textContent = currentUser.name.split(' ')[0].toUpperCase();
+                accountLink.href = 'Profile.html';
+            } else {
+                accountLink.textContent = 'PROFILE';
+                accountLink.href = 'Login.html';
+            }
+        }
+
+        async function handleFormSubmit(e) {
+            e.preventDefault();
+
+            const btn = document.getElementById('place-order-btn');
+            btn.textContent = 'Placing Order...';
+            btn.disabled = true;
+
+            try {
+                const formData = new FormData();
+
+                // Customer data
+                formData.append('customer_id', currentUser.customerId || '');
+                formData.append('name', document.getElementById('name').value);
+                formData.append('contact', document.getElementById('contact').value);
+
+                // Order data
+                const orderType = document.querySelector('input[name="order_type"]:checked').value;
+                formData.append('order_type', orderType);
+
+                if (orderType === 'DELIVERY') {
+                    const address = document.getElementById('address').value.trim();
+                    if (!address) {
+                        alert('Please enter your delivery address.');
+                        btn.textContent = '🛒 Place Order';
+                        btn.disabled = false;
+                        return;
+                    }
+                    formData.append('address', address);
+                }
+
+                // Payment: GCash if receipt uploaded, otherwise COD
+                const paymentMethod = uploadedFile ? 'GCASH' : 'COD';
+                formData.append('payment_method', paymentMethod);
+                if (uploadedFile) {
+                    formData.append('gcash_receipt', uploadedFile);
+                }
+
+                // Special requests
+                formData.append('special_requests', document.getElementById('special-requests').value);
+
+                // Cart data
+                formData.append('cart_data', JSON.stringify(cart));
+                formData.append('total_amount', calculateTotal().toFixed(2));
+
+                const response = await fetch('process_order_enhanced.php', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    // Remove purchased items from main cart
+                    allCartItems = allCartItems.filter(item => !item.selected);
+                    localStorage.setItem(CART_KEY, JSON.stringify(allCartItems));
+
+                    // Show success popup
+                    document.getElementById('success-popup').style.display = 'flex';
+                } else {
+                    throw new Error(result.message || 'Order processing failed');
+                }
+
+            } catch (error) {
+                console.error('Order error:', error);
+                alert('Error: ' + error.message);
+                btn.textContent = '🛒 Place Order';
+                btn.disabled = false;
+            }
+        }
+
+        function redirectToOrders() {
+            window.location.href = 'ViewOrder.html';
+        }
+
+        function setupGlobalListeners() {
+            const viewCartBtn = document.getElementById('view-cart-btn');
+            if (viewCartBtn) {
+                viewCartBtn.addEventListener('click', () => {
+                    alert("Please modify your cart on the Menu page.");
+                    window.location.href = 'Menu.html';
+                });
+            }
+
+            const caterLink = document.getElementById('cater-reservation-link');
+            if (caterLink) {
+                caterLink.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    if (currentUser) {
+                        window.location.href = CATER_RESERVATION_PAGE;
+                    } else {
+                        alert("You must log in to access Cater Reservation.");
+                        localStorage.setItem('redirectAfterLogin', CATER_RESERVATION_PAGE);
+                        window.location.href = LOGIN_PAGE;
+                    }
+                });
+            }
+
+            const checkoutForm = document.getElementById('checkout-form');
+            if (checkoutForm) {
+                checkoutForm.addEventListener('submit', handleFormSubmit);
+            }
+            
+            const gcashInput = document.getElementById('gcash-receipt');
+            if (gcashInput) {
+                gcashInput.addEventListener('change', handleFileUpload);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            updateCartLink();
+            renderOrderSummary();
+            populateUserDetails();
+            setupOrderTypeListener();
+            setupGlobalListeners();
+        });
+    </script>
+</body>
+
+</html>

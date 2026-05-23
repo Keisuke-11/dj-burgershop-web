@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Cart - DJs Burger Bar</title>
+    <link rel="stylesheet" href="CSS/Menu.css?v=1.2">
+    <link rel="stylesheet" href="CSS/Navigation.css">
+    <link rel="stylesheet" href="CSS/Footer.css?v=1.2">
+    <link rel="stylesheet" href="CSS/Cart.css?v=1.6">
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">
+            <img src="Photo/RealLogo.png" alt="Tabeya logo">
+        </div>
+        <nav class="nav-links">
+            <a href="index.html" class="nav-link">HOME</a>
+            <a href="Menu.html" class="nav-link">MENU</a>
+            <a href="CaterReservation.html" class="nav-link">RESERVATION</a>
+            <a href="Review.php" class="nav-link">REVIEWS</a>
+            <a href="About.html" class="nav-link">ABOUT</a>
+        </nav>
+        <div class="header-right">
+            <a href="Login.html" id="account-link">PROFILE</a>
+            <div class="cart-icon" id="view-cart-btn">
+                <a href="Cart.html" style="text-decoration: none; color: inherit;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="9" cy="21" r="1"></circle>
+                        <circle cx="20" cy="21" r="1"></circle>
+                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                    </svg>
+                    <span class="cart-count" id="cart-item-count">0</span>
+                </a>
+            </div>
+        </div>
+    </header>
+    <div class="cart-page-container">
+        <h1>My Cart</h1>
+
+        <div class="cart-content-wrapper">
+            <div id="cart-items-container">
+                <!-- Cart items will be injected here -->
+                <p style="text-align: center; color: white;">Loading cart...</p>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Sticky Footer Bar -->
+    <div class="cart-sticky-footer">
+        <div class="footer-left">
+            <div class="footer-checkbox">
+                <input type="checkbox" id="footer-select-all" checked disabled>
+                <label for="footer-select-all">Select All (<span id="footer-total-count">0</span>)</label>
+            </div>
+        </div>
+        <div class="footer-right">
+            <div class="footer-total-info">
+                Total (<span id="selected-quantity-display">0</span> item): <span class="footer-price">₱<span
+                        id="footer-total-amount">0.00</span></span>
+            </div>
+            <button id="footer-checkout-btn" class="footer-checkout-btn">Check Out</button>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container footer-grid">
+
+            <div class="footer-col">
+                <h4>Follow Us</h4>
+                <div class="social-icons">
+                    <a href="#" aria-label="Facebook">
+                        <svg xmlns="https://www.facebook.com/djburgerbar" viewBox="0 0 24 24">
+                            <path
+                                d="M12 2.04C6.5 2.04 2 6.53 2 12.06C2 17.06 5.66 21.21 10.44 21.96V14.96H7.9V12.06H10.44V9.85C10.44 7.34 11.93 5.96 14.22 5.96C15.31 5.96 16.45 6.15 16.45 6.15V8.62H15.19C13.95 8.62 13.56 9.39 13.56 10.18V12.06H16.34L15.89 14.96H13.56V21.96A10.05 10.05 0 0 0 22 12.06C22 6.53 17.5 2.04 12 2.04Z" />
+                        </svg>
+                    </a>
+                    <a href="#" aria-label="Instagram">
+                        <svg xmlns="https://www.instagram.com/joshua.abrantes/" viewBox="0 0 24 24">
+                            <path
+                                d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 3.6 7.6v8.8C3.6 18.4 5.6 20 7.6 20h8.8a3.6 3.6 0 0 0 4-3.6V7.6C20.4 5.6 18.8 4 16.8 4H7.6m4.4 3.6a4.4 4.4 0 1 1 0 8.8 4.4 4.4 0 0 1 0-8.8m0 1.6a2.8 2.8 0 1 0 0 5.6 2.8 2.8 0 0 0 0-5.6m5.8-5.6a1.4 1.4 0 1 1 0 2.8 1.4 1.4 0 0 1 0-2.8" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h4>Visit Us</h4>
+                <p>Barangay 1<br>Mercedes, Camarines Norte</p>
+            </div>
+
+            <div class="footer-col">
+                <h4>Contact Us</h4>
+                <p>0977 213 7648</p>
+                <p>joshuafernan_abrantes@yahoo.com</p>
+            </div>
+
+            <div class="footer-col">
+                <h4>All rights reserved</h4>
+                <p>© 2026 DJs Burger Bar</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ====================================================================
+        // === CONFIGURATION & DATA ===
+        // ====================================================================
+        const CART_KEY = 'tabeyaCart';
+        const USER_KEY = 'currentUser';
+        const LOGIN_PAGE = 'Login.html';
+        const CATER_RESERVATION_PAGE = 'CaterReservation.html';
+        const PROFILE_PAGE = 'Profile.html';
+        const FALLBACK_IMG = 'Photo/Foods.jpg';
+
+        // Fix image paths: old localStorage entries may still have the 'docs/' prefix
+        // (stored before the API fix). Strip it so the path resolves from docs/.
+        function getImageSrc(imagePath) {
+            if (!imagePath) return FALLBACK_IMG;
+            if (imagePath.startsWith('docs/')) {
+                imagePath = imagePath.substring(5);
+            }
+            return imagePath;
+        }
+
+        let cart = JSON.parse(localStorage.getItem(CART_KEY)) || [];
+
+        // Initialize 'selected' property if missing
+        // Initialize 'selected' property if missing or invalid type
+        let cartDirty = false;
+        cart.forEach(item => {
+            if (typeof item.selected !== 'boolean') {
+                // Default to true if undefined, null, or weird type
+                item.selected = true;
+                cartDirty = true;
+            }
+        });
+
+        // If we fixed any items, save immediately so state is consistent
+        if (cartDirty) {
+            localStorage.setItem(CART_KEY, JSON.stringify(cart));
+        }
+
+        // --- Core Login Check ---
+        function checkUserLoginStatus() {
+            return localStorage.getItem(USER_KEY) !== null;
+        }
+
+        function checkLoginAndProceed(redirectTarget) {
+            if (!checkUserLoginStatus()) {
+                alert("You must log in to perform this action.");
+                if (redirectTarget) {
+                    localStorage.setItem('redirectAfterLogin', redirectTarget);
+                }
+                window.location.href = LOGIN_PAGE;
+                return false;
+            }
+            if (redirectTarget && redirectTarget !== 'Cart.html') {
+                window.location.href = redirectTarget;
+            }
+            return true;
+        }
+
+        function updateCartDisplay() {
+            const count = cart.reduce((sum, item) => sum + item.quantity, 0);
+            document.getElementById('cart-item-count').textContent = count;
+        }
+
+        function saveCart() {
+            localStorage.setItem(CART_KEY, JSON.stringify(cart));
+            updateCartDisplay();
+            renderCartPage();
+        }
+
+        // Global functions for inline interaction
+        window.updateCartItemQuantity = function (itemId, change) {
+            const itemIndex = cart.findIndex(item => String(item.id) === String(itemId));
+            if (itemIndex > -1) {
+                const maxQty = cart[itemIndex].stockQuantity || 9999;
+                let newQuantity = cart[itemIndex].quantity + change;
+                if (newQuantity <= 0) {
+                    if (confirm("Remove this item from cart?")) {
+                        cart.splice(itemIndex, 1);
+                    } else {
+                        return; // Canceled
+                    }
+                } else if (newQuantity > maxQty) {
+                    // + button is already disabled at the cap; silently ignore edge cases
+                    return;
+                } else {
+                    cart[itemIndex].quantity = newQuantity;
+                }
+                saveCart();
+            }
+        }
+
+        window.setCartItemQuantity = function (itemId, newQuantity) {
+            const itemIndex = cart.findIndex(item => String(item.id) === String(itemId));
+            if (itemIndex > -1) {
+                let parsedQty = parseInt(newQuantity);
+                if (isNaN(parsedQty) || parsedQty < 1) {
+                    parsedQty = 1;
+                }
+                // Allow the value even if it exceeds stock — the inline warning
+                // and disabled checkout button will inform the user without a popup.
+                cart[itemIndex].quantity = parsedQty;
+                saveCart();
+            }
+        }
+
+        window.removeCartItem = function (itemId) {
+            if (confirm("Are you sure you want to remove this item?")) {
+                const itemIndex = cart.findIndex(item => String(item.id) === String(itemId));
+                if (itemIndex > -1) {
+                    cart.splice(itemIndex, 1);
+                    saveCart();
+                }
+            }
+        }
+
+        function calculateTotal() {
+            return cart
+                .filter(item => item.selected)
+                .reduce((total, item) => total + (item.price * item.quantity), 0)
+                .toFixed(2);
+        }
+
+        // --- Selection Logic ---
+        window.toggleItemSelection = function (itemId) {
+            const item = cart.find(i => String(i.id) === String(itemId));
+            if (item) {
+                item.selected = !item.selected;
+                saveCart();
+            }
+        }
+
+        window.toggleAllItems = function (isChecked) {
+            cart.forEach(item => item.selected = isChecked);
+            saveCart();
+        }
+
+        function renderCartPage() {
+            const listContainer = document.getElementById('cart-items-container');
+
+            // Elements for the sticky footer
+            const footerTotalElement = document.getElementById('footer-total-amount');
+            const footerCountElement = document.getElementById('footer-total-count');
+            const footerCheckoutBtn = document.getElementById('footer-checkout-btn');
+            const footerSelectAll = document.getElementById('footer-select-all');
+            const selectedQuantityElement = document.getElementById('selected-quantity-display');
+
+            if (!listContainer) return;
+
+            let itemsHtml = '';
+
+            if (cart.length === 0) {
+                listContainer.innerHTML = `
+                        <div class="empty-cart-message">
+                            <p>Your cart is empty.</p>
+                            <a href="Menu.html" class="browse-menu-btn">Browse Menu</a>
+                        </div>`;
+
+                // Disable footer elements
+                if (footerCheckoutBtn) footerCheckoutBtn.disabled = true;
+                if (footerTotalElement) footerTotalElement.textContent = "0.00";
+                if (footerCountElement) footerCountElement.textContent = "0";
+                if (selectedQuantityElement) selectedQuantityElement.textContent = "0";
+                if (footerSelectAll) { footerSelectAll.checked = false; footerSelectAll.disabled = true; }
+                return;
+            }
+
+            // Calculate Selection State
+            const allSelected = cart.every(item => item.selected);
+            const selectedItems = cart.filter(item => item.selected);
+
+            // Update Header/Footer Checkboxes
+            if (footerSelectAll) {
+                footerSelectAll.checked = allSelected;
+                footerSelectAll.disabled = false;
+                footerSelectAll.onchange = (e) => window.toggleAllItems(e.target.checked);
+            }
+
+            // Header removed for card layout
+
+            // Check selected items for any stock issues
+            const hasOutOfStockSelected = selectedItems.some(item =>
+                item.stockStatus === 'out_of_stock'
+            );
+            const hasInsufficientQtySelected = selectedItems.some(item =>
+                item.quantity > (item.stockQuantity || 9999)
+            );
+
+            cart.forEach(item => {
+                const itemTotal = (item.price * item.quantity).toFixed(2);
+                const safeId = String(item.id).replace(/'/g, "\\'");
+                const unitPrice = parseFloat(item.price).toFixed(2);
+                const maxQty = item.stockQuantity || 9999;
+
+                // Per-item inline stock warning — no popups
+                let stockWarning = '';
+                if (item.stockStatus === 'out_of_stock') {
+                    stockWarning = '<div class="stock-warning" style="color:#c0392b;font-weight:bold;">❌ Out of Stock — cannot be ordered</div>';
+                } else if (item.quantity > maxQty) {
+                    stockWarning = `<div class="stock-warning" style="color:#c0392b;font-weight:bold;">❌ Insufficient stock! Only ${maxQty} available — reduce quantity to ${maxQty} or below</div>`;
+                } else if (item.stockStatus === 'low_stock') {
+                    stockWarning = `<div class="stock-warning" style="color:orange;">⚠️ Low Stock (${maxQty} remaining)</div>`;
+                } else {
+                    stockWarning = '<div class="stock-warning" style="color:green;">✅ Available</div>';
+                }
+
+                itemsHtml += `
+                        <div class="cart-item-card">
+                            <div class="card-top">
+                                <div class="col-checkbox">
+                                     <input type="checkbox" onchange="window.toggleItemSelection('${safeId}')" ${item.selected ? 'checked' : ''}>
+                                </div>
+                                <div class="product-wrapper">
+                                    <img src="${getImageSrc(item.image)}" alt="${item.name}" onerror="this.onerror=null;this.src='${FALLBACK_IMG}'" loading="lazy">
+                                    <div class="card-info">
+                                        <h3 class="product-name">${item.name}</h3>
+                                        ${stockWarning}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-bottom">
+                                <div class="card-price">Unit Price: ₱${unitPrice}</div>
+                                <div class="col-quantity">
+                                     <div class="quantity-controls">
+                                        <button onclick="window.updateCartItemQuantity('${safeId}', -1)" ${item.quantity <= 1 ? 'disabled' : ''}>-</button>
+                                        <input type="text"
+                                               value="${item.quantity}"
+                                               onchange="window.setCartItemQuantity('${safeId}', this.value)"
+                                               onkeypress="return event.charCode >= 48 && event.charCode <= 57"
+                                        >
+                                        <button onclick="window.updateCartItemQuantity('${safeId}', 1)" ${item.quantity >= (item.stockQuantity || 9999) ? 'disabled' : ''}>+</button>
+                                     </div>
+                                </div>
+                                <div class="card-total">Total: ₱${itemTotal}</div>
+                                <div class="card-actions">
+                                    <button class="delete-btn" onclick="window.removeCartItem('${safeId}')">Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+            });
+
+            // Footer / Checkout Button State
+            if (footerCheckoutBtn) {
+                if (selectedItems.length === 0) {
+                    footerCheckoutBtn.disabled = true;
+                    footerCheckoutBtn.style.backgroundColor = '#ccc';
+                    footerCheckoutBtn.style.color = '';
+                    footerCheckoutBtn.textContent = 'Check Out';
+                } else if (hasOutOfStockSelected) {
+                    footerCheckoutBtn.disabled = true;
+                    footerCheckoutBtn.style.backgroundColor = '#c0392b';
+                    footerCheckoutBtn.style.color = '#fff';
+                    footerCheckoutBtn.textContent = '❌ Remove Out-of-Stock Items';
+                } else if (hasInsufficientQtySelected) {
+                    footerCheckoutBtn.disabled = true;
+                    footerCheckoutBtn.style.backgroundColor = '#e67e22';
+                    footerCheckoutBtn.style.color = '#fff';
+                    footerCheckoutBtn.textContent = '⚠️ Reduce Quantity to Check Out';
+                } else {
+                    footerCheckoutBtn.disabled = false;
+                    footerCheckoutBtn.style.backgroundColor = ''; // Reset to CSS default
+                    footerCheckoutBtn.style.color = '';
+                    footerCheckoutBtn.textContent = 'Check Out';
+                }
+            }
+
+            listContainer.innerHTML = itemsHtml;
+
+            // Update sticky footer totals
+            const totalAmount = calculateTotal();
+            const totalSelectedQty = selectedItems.reduce((sum, item) => sum + item.quantity, 0);
+
+            if (footerTotalElement) footerTotalElement.textContent = totalAmount;
+            if (footerCountElement) footerCountElement.textContent = cart.length; // Count of distinct items for 'Select All'
+            if (selectedQuantityElement) selectedQuantityElement.textContent = totalSelectedQty;
+        }
+
+        function updateAccountLink() {
+            const accountLink = document.getElementById('account-link');
+            const user = JSON.parse(localStorage.getItem(USER_KEY));
+
+            if (user) {
+                accountLink.textContent = user.name.split(' ')[0].toUpperCase();
+                accountLink.href = PROFILE_PAGE;
+            } else {
+                accountLink.textContent = 'PROFILE';
+                accountLink.href = LOGIN_PAGE;
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            updateHeaderElements();
+            renderCartPage();
+
+            const caterLink = document.getElementById('cater-reservation-link');
+            if (caterLink) {
+                caterLink.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    if (checkLoginAndProceed(CATER_RESERVATION_PAGE));
+                });
+            }
+
+            document.getElementById('footer-checkout-btn').addEventListener('click', () => {
+                const selectedItems = cart.filter(item => item.selected);
+
+                // Guard: button should already be disabled for these cases,
+                // but keep silent guards here in case of edge scenarios.
+                if (selectedItems.length === 0) return;
+
+                const hasUnavailable = selectedItems.some(item => item.stockStatus === 'out_of_stock');
+                if (hasUnavailable) return;
+
+                const hasInsufficientQty = selectedItems.some(item =>
+                    item.quantity > (item.stockQuantity || 9999)
+                );
+                if (hasInsufficientQty) return;
+
+                if (checkLoginAndProceed('Checkout.html')) {
+                    // Redirect handled inside checkLoginAndProceed
+                }
+            });
+        });
+
+        function updateHeaderElements() {
+            updateCartDisplay();
+            updateAccountLink();
+        }
+
+        // Always keep the sticky checkout bar visible.
+        // (The old IntersectionObserver was hiding it whenever the page
+        //  footer was in view, which on short carts meant it was ALWAYS hidden.)
+        const stickyFooter = document.querySelector('.cart-sticky-footer');
+        if (stickyFooter) {
+            stickyFooter.style.opacity = '1';
+            stickyFooter.style.pointerEvents = 'auto';
+        }
+    </script>
+</body>
+
+</html>

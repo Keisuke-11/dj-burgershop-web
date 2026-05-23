@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - DJs Burger Bar</title>
+    <link rel="stylesheet" href="CSS/Home.css">
+    <link rel="stylesheet" href="CSS/Navigation.css">
+    <link rel="stylesheet" href="CSS/Footer.css">
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <img src="Photo/RealLogo.png" alt="Tabeya logo">
+        </div>
+        <nav class="nav-links">
+            <a href="index.html" class="nav-link active">HOME</a>
+            <a href="Menu.html" class="nav-link">MENU</a>
+            <a href="CaterReservation.html" class="nav-link">RESERVATION</a>
+            <a href="Review.php" class="nav-link">REVIEWS</a>
+            <a href="About.html" class="nav-link">ABOUT</a>
+        </nav>
+        <div class="header-right">
+            <a href="Login.html" id="account-link">PROFILE</a>
+            <div class="cart-icon" id="view-cart-btn">
+                <a href="Cart.html" style="text-decoration: none; color: inherit;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="9" cy="21" r="1"></circle>
+                        <circle cx="20" cy="21" r="1"></circle>
+                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                    </svg>
+                    <span class="cart-count" id="cart-item-count">0</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero-section">
+            <div class="logo-container">
+                <img src="Photo/RealLogo.png" alt="Tabeya Logo">
+                <div class="hero-buttons">
+                    <a href="Menu.html" class="hero-btn order-btn">ORDER NOW</a>
+                    <a href="CaterReservation.html" class="hero-btn reservation-btn">MAKE A RESERVATION</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="offerings-section">
+            <div class="h1-container">
+                <h1>WHAT WE OFFER</h1>
+            </div>
+            <div class="offerings">
+                <div class="item" onclick="window.location.href='Menu.html#Rice-Meal'">
+                    <img src="Photo/burgers.jpg" alt="Rice Meals">
+                    <div>
+                        <h2>BURGERS</h2>
+                        <p>Sink your teeth into our juicy, flavor-packed burgers made with premium beef patties, fresh
+                            veggies, and signature sauces. From classic favorites to loaded creations like cheesy bacon
+                            and smoky BBQ stacks, every bite delivers bold satisfaction and crave-worthy goodness.</p>
+                    </div>
+                </div>
+                <div class="item" onclick="window.location.href='Menu.html#Platter'">
+                    <img src="Photo/sides.jpg" alt="Platters">
+                    <div>
+                        <h2>SIDES</h2>
+                        <p>Level up your meal with our irresistible sides! From crispy golden fries to fully loaded
+                            cheesy, smoky, and meaty creations, each dish is perfectly seasoned and served with
+                            delicious dipping sauces—made for sharing (or not).</p>
+                    </div>
+                </div>
+                <div class="item" onclick="window.location.href='Menu.html#Dessert'">
+                    <img src="Photo/silogmeal.jpg" alt="Desserts">
+                    <div>
+                        <h2>SILOG MEALS</h2>
+                        <p>Start strong with our hearty silog meals—classic Filipino comfort on a plate. Enjoy garlic
+                            fried rice, perfectly cooked eggs, and your choice of savory meats, delivering a satisfying
+                            and flavorful experience any time of the day.</p>
+                    </div>
+                </div>
+                <div class="item" onclick="window.location.href='Menu.html#Spaghetti-Meals'">
+                    <img src="Photo/drinks.jpg" alt="Spaghetti">
+                    <div>
+                        <h2>DRINKS</h2>
+                        <p>Cool down with our refreshing drink selection! From vibrant fruity sodas bursting with flavor
+                            to classic soft drinks and bottled water, there’s a perfect sip to match every meal.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mood-section section-padding">
+            <div class="container">
+                <div class="mood-grid">
+                    <div class="mood-text">
+                        <h2>A place that feels like home</h2>
+                        <p>Whether you're here for your afternoon meal, a quiet place to work, or an evening
+                            catch-up with
+                            friends — DJs Burger Bar is always ready to welcome you.</p>
+                        <a href="About.html" class="btn btn-outline">Our Story →</a>
+                    </div>
+                    <div class="mood-image" style="background-image: url(Photo/djsimage.jpg);"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cart Modal Removed -->
+
+        <!-- FOOTER -->
+        <footer class="footer">
+            <div class="container footer-grid">
+
+                <div class="footer-col">
+                    <h4>Follow Us</h4>
+                    <div class="social-icons">
+                        <a href="#" aria-label="Facebook">
+                            <svg xmlns="https://www.facebook.com/djburgerbar" viewBox="0 0 24 24">
+                                <path
+                                    d="M12 2.04C6.5 2.04 2 6.53 2 12.06C2 17.06 5.66 21.21 10.44 21.96V14.96H7.9V12.06H10.44V9.85C10.44 7.34 11.93 5.96 14.22 5.96C15.31 5.96 16.45 6.15 16.45 6.15V8.62H15.19C13.95 8.62 13.56 9.39 13.56 10.18V12.06H16.34L15.89 14.96H13.56V21.96A10.05 10.05 0 0 0 22 12.06C22 6.53 17.5 2.04 12 2.04Z" />
+                            </svg>
+                        </a>
+                        <a href="#" aria-label="Instagram">
+                            <svg xmlns="https://www.instagram.com/joshua.abrantes/" viewBox="0 0 24 24">
+                                <path
+                                    d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 3.6 7.6v8.8C3.6 18.4 5.6 20 7.6 20h8.8a3.6 3.6 0 0 0 4-3.6V7.6C20.4 5.6 18.8 4 16.8 4H7.6m4.4 3.6a4.4 4.4 0 1 1 0 8.8 4.4 4.4 0 0 1 0-8.8m0 1.6a2.8 2.8 0 1 0 0 5.6 2.8 2.8 0 0 0 0-5.6m5.8-5.6a1.4 1.4 0 1 1 0 2.8 1.4 1.4 0 0 1 0-2.8" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Visit Us</h4>
+                    <p>Barangay 1<br>Mercedes, Camarines Norte</p>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Contact Us</h4>
+                    <p>0977 213 7648</p>
+                    <p>joshuafernan_abrantes@yahoo.com</p>
+                </div>
+
+                <div class="footer-col">
+                    <h4>All rights reserved</h4>
+                    <p>© 2026 DJs Burger Bar</p>
+                </div>
+            </div>
+        </footer>
+
+        <script>
+            const CART_KEY = 'tabeyaCart';
+            const USER_KEY = 'currentUser';
+            const LOGIN_PAGE = 'Login.html';
+            const PROFILE_PAGE = 'Profile.html';
+            const CATER_RESERVATION_PAGE = 'CaterReservation.html';
+
+            const cartCountElement = document.getElementById('cart-item-count');
+
+            let cart = JSON.parse(localStorage.getItem(CART_KEY)) || [];
+
+            // --- Core Login Check ---
+            function checkUserLoginStatus() {
+                return localStorage.getItem(USER_KEY) !== null;
+            }
+
+            function checkLoginAndProceed(redirectTarget) {
+                if (!checkUserLoginStatus()) {
+                    alert("You must log in to perform this action.");
+                    if (redirectTarget) {
+                        localStorage.setItem('redirectAfterLogin', redirectTarget);
+                    }
+                    window.location.href = LOGIN_PAGE;
+                    return false;
+                }
+                return true;
+            }
+
+            // --- Account Link State ---
+            function updateAccountLink() {
+                const accountLink = document.getElementById('account-link');
+                if (!accountLink) return;
+
+                const user = JSON.parse(localStorage.getItem(USER_KEY));
+
+                if (user) {
+                    // Logged In: Show name and directly link to Profile.html
+                    accountLink.textContent = user.name.split(' ')[0].toUpperCase();
+                    accountLink.href = PROFILE_PAGE;
+                } else {
+                    // Logged Out: Show 'PROFILE' and link to Login
+                    accountLink.textContent = 'PROFILE';
+                    accountLink.href = LOGIN_PAGE;
+                }
+            }
+
+            // --- Cart Management Logic ---
+            function updateCartDisplay() {
+                const count = cart.reduce((total, item) => total + item.quantity, 0);
+                if (cartCountElement) {
+                    cartCountElement.textContent = count;
+                }
+            }
+
+            function saveCart() {
+                localStorage.setItem(CART_KEY, JSON.stringify(cart));
+                updateCartDisplay();
+            }
+
+            // Modal rendering logic removed
+
+            // --- Attach Global Listeners (Simplified) ---
+            function attachGlobalListeners() {
+                // Cart button is now a direct link, no JS needed for it.
+
+                // Cater Reservation link (FIXED)
+                document.getElementById('cater-reservation-link').addEventListener('click', function (event) {
+                    event.preventDefault();
+                    // Check login status. If true (logged in), proceed with the redirect.
+                    if (checkLoginAndProceed(CATER_RESERVATION_PAGE)) {
+                        window.location.href = CATER_RESERVATION_PAGE;
+                    }
+                });
+            }
+
+            // --- INITIALIZATION ---
+            document.addEventListener('DOMContentLoaded', () => {
+                updateCartDisplay();
+                updateAccountLink();
+                attachGlobalListeners();
+            });
+        </script>
+</body>
+
+</html>

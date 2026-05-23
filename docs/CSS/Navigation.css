@@ -1,0 +1,153 @@
+/* =========================================== */
+/* === SHARED NAVIGATION STYLES === */
+/* =========================================== */
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(188, 24, 35, 0.8);
+    height: 85px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 2rem;
+    z-index: 100;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+header .logo img {
+    height: 80px;
+    width: auto;
+    display: block;
+}
+
+/* Center Navigation Links */
+nav.nav-links {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px; /* Gap between links */
+}
+
+.nav-link {
+    color: white; /* Default color */
+    text-decoration: none;
+    position: relative;
+    transition: color 0.25s ease;
+    padding-bottom: 4px;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2.5px;
+    background: #F7C733;
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover {
+    color: #F7C733;
+}
+
+.nav-link:hover::after,
+.nav-link:focus::after {
+    width: 100%;
+}
+
+.nav-link.active {
+    color: #F7C733;
+}
+
+.nav-link.active::after {
+    width: 100%;
+}
+
+/* Header Right Section */
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex: 0 0 auto;
+}
+
+.header-right a {
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 13px;
+    transition: color 0.2s;
+}
+
+.header-right a:hover {
+    color: #F7C733;
+}
+
+/* Cart Icon Styles */
+.cart-icon {
+    font-size: 1.2em;
+    cursor: pointer;
+    position: relative;
+    color: white;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px 8px;
+    line-height: 1;
+}
+
+.cart-count {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background-color: #F7C733;
+    color: #BC1823;
+    border-radius: 50%;
+    min-width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: bold;
+    padding: 0 4px;
+    box-sizing: border-box;
+}
+
+/* Mobile Responsive Navigation */
+@media (max-width: 1024px) {
+    header {
+        flex-direction: column;
+        padding: 1rem;
+        position: static;
+    }
+
+    header .logo img {
+        height: 50px;
+        margin-bottom: 1rem;
+    }
+
+    nav.nav-links {
+        position: static;
+        transform: none;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+        width: 100%;
+        margin: 10px 0;
+    }
+
+    .header-right {
+        margin-top: 10px;
+    }
+}

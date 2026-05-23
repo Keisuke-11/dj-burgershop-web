@@ -1,0 +1,15 @@
+# Database credentials - NEVER commit these
+docs/api/config/db_config.ini
+
+# OS files
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# PHP error logs
+error.log
+*.log
+
+# Temporary/cache files
+*.tmp
+*.cache
