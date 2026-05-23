@@ -1,0 +1,5 @@
+server=localhost
+database=dj_burgershop
+username=root
+password=
+port=3306
